@@ -7,7 +7,7 @@ class Main extends React.Component {
   render() {
     // console.table(getMonth(1));
     return (
-      <div className="p-5">
+      <div>
         <CalendarBody value="1" />
       </div>
     );

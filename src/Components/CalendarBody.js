@@ -1,13 +1,12 @@
 import React from "react";
 import "../index.css";
 import { CalendarBoard } from "./CalendarBoard.js";
+import { NavBar } from "./NavBar";
 
 export const CalendarBody = (props) => {
   return (
     <div>
-      <div>
-        <p>Calendar Head</p>
-      </div>
+      <NavBar />
       <div>
         <CalendarBoard />
       </div>

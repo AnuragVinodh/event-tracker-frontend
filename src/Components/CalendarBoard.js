@@ -50,5 +50,5 @@ export const CalendarBoard = (props) => {
     }
     rows.push(<div key={i}>{cells}</div>);
   }
-  return <div className="board-row">{rows}</div>;
+  return <div className="grid grid-cols-7 grid-rows-3 gap-7">{rows}</div>;
 };
