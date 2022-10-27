@@ -18,6 +18,15 @@ export const CalendarBoard = (props) => {
   const [events, setEvents] = React.useState([]);
   const rows = [];
   const array = getDates(1);
+  const headers = [
+    <span class="font-bold text-xl py-1">Sunday</span>,
+    <span class="font-bold text-xl py-1">Monday</span>,
+    <span class="font-bold text-xl py-1">Tuesday</span>,
+    <span class="font-bold text-xl py-1">Wednesday</span>,
+    <span class="font-bold text-xl py-1">Thursday</span>,
+    <span class="font-bold text-xl py-1">Friday</span>,
+    <span class="font-bold text-xl py-1">Saturday</span>,
+  ];
 
   React.useEffect(() => {
     getEvents().then((value) => {
@@ -36,7 +45,7 @@ export const CalendarBoard = (props) => {
         events[event_idx] &&
         events[event_idx].date_day === array[i][j].date()
       ) {
-        cells.push(
+        rows.push(
           <Cell
             key={i * 7 + j}
             value={array[i][j].date()}
@@ -45,10 +54,19 @@ export const CalendarBoard = (props) => {
         );
         event_idx++;
       } else {
-        cells.push(<Cell key={i * 7 + j} value={array[i][j].date()} />);
+        rows.push(<Cell key={i * 7 + j} value={array[i][j].date()} />);
       }
     }
-    rows.push(<div key={i}>{cells}</div>);
+    // rows.push(
+    //   <div class="grid grid-cols-7" key={i}>
+    //     {cells}
+    //   </div>
+    // );
   }
-  return <div className="grid grid-cols-7 grid-rows-3 gap-7">{rows}</div>;
+  return (
+    <div class="p-5">
+      <div class="grid grid-cols-7 text-center">{headers}</div>
+      <div class="grid grid-cols-7 h-screen w-100">{rows}</div>
+    </div>
+  );
 };
