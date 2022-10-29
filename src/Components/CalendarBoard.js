@@ -39,23 +39,26 @@ export const CalendarBoard = ({ month, year }) => {
   // }, [events]);
 
   let event_idx = 0;
-  for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 7; j++) {
-      if (
-        events[event_idx] &&
-        events[event_idx].date_day === dates[i][j].date()
-      ) {
-        rows.push(
-          <Cell
-            key={i * 7 + j}
-            value={dates[i][j].date()}
-            event={events[event_idx]}
-          />
-        );
-        event_idx++;
-      } else {
-        rows.push(<Cell key={i * 7 + j} value={dates[i][j].date()} />);
-      }
+  for (let i = 0; i < dates.length; i++) {
+    if (events[event_idx] && events[event_idx].date_day === dates[i].date()) {
+      rows.push(
+        <Cell
+          key={i}
+          value={dates[i].date()}
+          is_event={true}
+          events={[events[event_idx]]}
+        />
+      );
+      event_idx++;
+    } else {
+      rows.push(
+        <Cell
+          key={i * 7}
+          value={dates[i].date()}
+          is_event={false}
+          events={[]}
+        />
+      );
     }
   }
 
